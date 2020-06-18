@@ -19,14 +19,18 @@ Route::group(['prefix' => 'tasks'], function () {
     Route::get('/', function () {
         $tasks = \App\Task::all();//collection
         return view('tasks.index', ['tasks' => $tasks]);
-    });
+    })->name('tasks.list');
+
+    Route::get('/create', function(){
+        return view('tasks.create');
+    })->name('tasks.create');
 
     Route::post('/', function () {
 
-    });
+    })->name('tasks.store');
 
     Route::delete('/{task}', function () {
 
-    });
+    })->name('tasks.destroy');
 });
 
