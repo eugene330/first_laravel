@@ -4,9 +4,9 @@
 
     <!-- Bootstrap шаблон... -->
 
-<a href="{{route('tasks.create')}}">
-    <i class="fa fa-plus"></i> Добавить задачу
-</a>
+    <a href="{{route('tasks.create')}}">
+        <i class="fa fa-plus"></i> Добавить задачу
+    </a>
 
     <!-- Текущие задачи -->
     @if (count($tasks) > 0)
@@ -20,10 +20,10 @@
 
                     <!-- Заголовок таблицы -->
                     <thead>
-                        <tr>
-                            <th>Task</th>
-                            <th>&nbsp;</th>
-                        </tr>
+                    <tr>
+                        <th>Task</th>
+                        <th>&nbsp;</th>
+                    </tr>
                     </thead>
 
                     <!-- Тело таблицы -->
@@ -36,7 +36,22 @@
                             </td>
 
                             <td>
-                                <!-- TODO: Кнопка Удалить -->
+                                <div style="display: flex">
+                                    <form action="{{route('tasks.destroy', $task->id)}}" method="post">
+                                        {{csrf_field()}}
+                                        {{method_field('DELETE')}}
+                                        <button class="btn btn-danger">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+                                    <form action="{{route('tasks.edit', $task->id)}}" method="post">
+                                        {{csrf_field()}}
+                                        {{method_field('GET')}}
+                                        <button class="btn btn-warning">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
